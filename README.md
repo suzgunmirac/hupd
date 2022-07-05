@@ -59,7 +59,6 @@ dataset_dict = load_dataset('HUPD/hupd',
 )
 ```
 
-
 ## Downloading the Dataset 
 ### Manual Download Options:
 
@@ -119,8 +118,11 @@ Each patent application is defined by a distinct JSON file, named after its appl
 
 ## Google Colab
 You can also use the following Google Colab notebooks to explore HUPD. 
-- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_ZsI7WFTsEO0iu_0g3BLTkIkOUqPzCET?usp=sharing) [HUPD Examples: Loading the Dataset](https://colab.research.google.com/drive/1_ZsI7WFTsEO0iu_0g3BLTkIkOUqPzCET?usp=sharing)
-- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1TzDDCDt368cUErH86Zc_P2aw9bXaaZy1?usp=sharing) [HUPD Examples: Loading HUPD By Using HuggingFace's Libraries](https://colab.research.google.com/drive/1TzDDCDt368cUErH86Zc_P2aw9bXaaZy1?usp=sharing)
+- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_ZsI7WFTsEO0iu_0g3BLTkIkOUqPzCET?usp=sharing) [ HUPD Examples: Loading the Dataset](https://colab.research.google.com/drive/1_ZsI7WFTsEO0iu_0g3BLTkIkOUqPzCET?usp=sharing)
+- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1TzDDCDt368cUErH86Zc_P2aw9bXaaZy1?usp=sharing) [ HUPD Examples: Loading HUPD By Using HuggingFace's Libraries](https://colab.research.google.com/drive/1TzDDCDt368cUErH86Zc_P2aw9bXaaZy1?usp=sharing)
+- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1TzDDCDt368cUErH86Zc_P2aw9bXaaZy1?usp=sharing) [ HUPD Examples: Using the HUPD DistilRoBERTa Model](https://colab.research.google.com/drive/11t69BWcAVXndQxAOCpKaGkKkEYJSfydT?usp=sharing)
+- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1TzDDCDt368cUErH86Zc_P2aw9bXaaZy1?usp=sharing) [ HUPD Examples: Using the HUPD T5-Small Summarization Model](https://colab.research.google.com/drive/1VkCtrRIryzev_ixDjmJcfJNK-q6Vx24y?usp=sharing)
+
 
 ## Jupyter Notebooks 
 Please feel free to take a look at our notebooks if you would like to run the code in an interactive session or plot some of the figures in our paper by yourself.
@@ -135,8 +137,61 @@ Let us first provide a brief overview of each task we consider in our paper:
 - **Language Modeling**: We perform masked language modeling on the claims and description sections of patent applications.
 - **Abstractive Summarization**: Each patent contains an abstract section in which the applicant summarizes the content of the patent. We use this section as the ground truth for our abstractive summarization task, and we use either the claims section or the description section as the source text.
 
+## Models
+
+### HUPD DistilRoBERTa-Base Masked Language Model
+[HUPD DistilRoBERTa-Base](https://huggingface.co/turingmachine/hupd-distilroberta-base) was fine-tuned on HUPD with a masked language modeling objective. You can use this model directly with the Hugging Face pipeline as follows:
+
+```python
+from transformers import pipeline
+
+model = pipeline(task="fill-mask", model="turingmachine/hupd-distilroberta-base")
+model("Improved <mask> for playing a game of thumb wrestling.")
+```
+
+Here is the output:
+```python
+[{'score': 0.4274042248725891,
+  'sequence': 'Improved method for playing a game of thumb wrestling.',
+  'token': 5448,
+  'token_str': ' method'},
+ {'score': 0.06967400759458542,
+  'sequence': 'Improved system for playing a game of thumb wrestling.',
+  'token': 467,
+  'token_str': ' system'},
+ {'score': 0.06849079579114914,
+  'sequence': 'Improved device for playing a game of thumb wrestling.',
+  'token': 2187,
+  'token_str': ' device'},
+ {'score': 0.04544765502214432,
+  'sequence': 'Improved apparatus for playing a game of thumb wrestling.',
+  'token': 26529,
+  'token_str': ' apparatus'},
+ {'score': 0.025765646249055862,
+  'sequence': 'Improved means for playing a game of thumb wrestling.',
+  'token': 839,
+  'token_str': ' means'}]
+```
+
+### HUPD T5-Small Summarization Model
+[HUPD T5-Small](https://huggingface.co/turingmachine/hupd-t5-small) was fine-tuned on the claims (text) and abstract (summary) sections of HUPD. You can use this model directly with the Hugging Face pipeline as follows:
+
+```python
+from transformers import pipeline
+
+TEXT = "1. An optical coherent receiver for an optical communication network, said optical coherent receiver being configured to receive a modulated optical signal and to process said modulated optical signal for generating an in-phase component and a quadrature component, said in-phase component and said quadrature component being electrical signals, said optical coherent receiver comprising a power adjuster in turn comprising: a multiplying unit configured to multiply said in-phase component by an in-phase gain thereby providing a power-adjusted in-phase component, and to multiply said quadrature component by a quadrature gain thereby providing a power-adjusted quadrature component; and a digital circuit connected between output and input of said multiplying unit and configured to compute: a common gain indicative of a sum of a power of said power-adjusted in-phase component and a power of said power-adjusted quadrature component, and a differential gain indicative of a difference between said power of said power-adjusted in-phase component and said power of said power-adjusted quadrature component; and said in-phase gain as a product between said common gain and said differential gain, and said quadrature gain as a ratio between said common gain and said differential gain. 2. An optical coherent receiver according to claim 1, wherein it further comprises an analog-to-digital unit connected at the input of said power adjuster, said analog-to-digital unit being configured to ..."
+
+summarizer = pipeline(task="summarization", model="turingmachine/hupd-t5-small")
+summarizer(TEXT)
+```
+
+Here is the output:
+```python
+[{'summary_text': 'An optical coherent receiver for an optical communication network includes a power adjuster and a digital circuit connected between output and input of the multiplying unit and configured to compute a common gain indicative of a sum of the power of an in-phase component and the power-adjusted quadrature component, and the differential gain as a product between the common gain and the diffractive gain.'}]
+```
+
 ### Model Weights
-The model weights can be downloaded from [this Google Drive link](https://drive.google.com/drive/folders/12c6tIsaKisTR-ujukGXjbllk6gRGFRvx?usp=sharing).
+The model weights can also be downloaded from [this Google Drive link](https://drive.google.com/drive/folders/12c6tIsaKisTR-ujukGXjbllk6gRGFRvx?usp=sharing).
 
 ## Citation
 If your research makes use of our dataset, models, or results, please consider citing our paper. 

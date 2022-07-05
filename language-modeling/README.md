@@ -1,4 +1,4 @@
-![HUPD-Diagram](https://github.com/suzgunmirac/hupd/blob/main/figures/HUPD-Logo.png)
+![HUPD-Diagram](https://github.com/suzgunmirac/hupd/blob/main/legacy/figures/HUPD-Logo.png)
 
 # The Harvard USPTO Patent Dataset (HUPD)
 
