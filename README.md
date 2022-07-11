@@ -1,7 +1,7 @@
 ![HUPD-Diagram](https://github.com/suzgunmirac/hupd/blob/main/legacy/figures/HUPD-Logo.png)
 
 # The Harvard USPTO Patent Dataset (HUPD)
-This present repository contains the dataset from "[_The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications_](https://openreview.net/pdf?id=WhTTCWsMrYv)", which is currently under review in the NeurIPS 2022 Datasets and Benchmarks Track.
+This present repository contains the dataset from "[_The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications_](https://arxiv.org/abs/2207.04043)", which is currently under review in the NeurIPS 2022 Datasets and Benchmarks Track.
 
 ## Table of Contents
 1. [Overview of HUPD](#overview-of-hupd)
@@ -9,10 +9,9 @@ This present repository contains the dataset from "[_The Harvard USPTO Patent Da
 3. [Downloading the Dataset](#downloading-the-dataset)
 4. [Data Fields and Data Format](#data-fields-and-data-format)
 5. [Google Colab](#google-colab)
-6. [Jupyter Notebooks](#jupyter-notebooks)
-7. [Experiments and Tasks](#experiments-and-tasks)
-8. [Citation](#citation)
-9. [Licensing and Disclaimer](#licensing-and-contact)
+6. [Experiments and Tasks](#experiments-and-tasks)
+7. [Citation](#citation)
+8. [Licensing and Contact](#licensing-and-contact)
 
 ## Overview of HUPD
 The Harvard USPTO Dataset (HUPD) is a large-scale, well-structured, and multi-purpose corpus of English-language utility patent applications filed to the United States Patent and Trademark Office (USPTO) between January 2004 and December 2018. With more than 4.5 million patent documents, HUPD is two to three times larger than comparable patent datasets. Unlike previously proposed patent datasets in NLP, it contains the inventor-submitted versions of patent applications, not the final versions of granted patents, allowing us to study patentability at the time of filing using NLP methods for the first time. It is also novel in its inclusion of rich structured metadata alongside the text of patent filings: By providing each application's metadata along with all of its text fields, the dataset enables researchers to perform new sets of NLP tasks that leverage variation in structured covariates.
@@ -67,11 +66,7 @@ HUPD can be easily accessed through Hugging Face Datasets. To download the raw p
 
 
 #### Google Drive
-HUPD is also available on Google Drive. This Google Drive folder contains four large tarred files and a big feather file. **More than 360GB of disk storage space** is needed to download and store all the individual files. The following command will download all the tar files and then extract them. 
-
-```bash
-bash ./scripts/download_and_extract_all.sh
-```
+HUPD is also available on Google Drive. This Google Drive folder contains four large tarred files and a big feather file. **More than 360GB of disk storage space** is needed to download and store all the individual files.
 
 ## Data Fields and Data Format
 Each patent application is defined by a distinct JSON file, named after its application number, and includes information about the application and publication numbers, title, decision status, filing and publication dates, primary and secondary classification codes, inventor(s), examiner, attorney, abstract, claims, background, summary, and full description of the proposed invention, among other fields. There are also supplementary variables, such as the small-entity indicator (which denotes whether the applicant is considered to be a small entity by the USPTO) and the foreign-filing indicator (which denotes whether the application was originally filed in a foreign country). 
@@ -122,13 +117,6 @@ You can also use the following Google Colab notebooks to explore HUPD.
 - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1TzDDCDt368cUErH86Zc_P2aw9bXaaZy1?usp=sharing) [ HUPD Examples: Loading HUPD By Using HuggingFace's Libraries](https://colab.research.google.com/drive/1TzDDCDt368cUErH86Zc_P2aw9bXaaZy1?usp=sharing)
 - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1TzDDCDt368cUErH86Zc_P2aw9bXaaZy1?usp=sharing) [ HUPD Examples: Using the HUPD DistilRoBERTa Model](https://colab.research.google.com/drive/11t69BWcAVXndQxAOCpKaGkKkEYJSfydT?usp=sharing)
 - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1TzDDCDt368cUErH86Zc_P2aw9bXaaZy1?usp=sharing) [ HUPD Examples: Using the HUPD T5-Small Summarization Model](https://colab.research.google.com/drive/1VkCtrRIryzev_ixDjmJcfJNK-q6Vx24y?usp=sharing)
-
-
-## Jupyter Notebooks 
-Please feel free to take a look at our notebooks if you would like to run the code in an interactive session or plot some of the figures in our paper by yourself.
-* `Exploring the Data Fields of HUPD.ipynb`: To explore some of the data fields within HUPD.
-* `Loading HUPD By Using HuggingFace's Libraries.ipynb`: To learn how to load and use HUPD using Hugging Face's libraries. 
-
 
 ## Experiments and Tasks
 Let us first provide a brief overview of each task we consider in our paper:
@@ -197,12 +185,14 @@ The model weights can also be downloaded from [this Google Drive link](https://d
 If your research makes use of our dataset, models, or results, please consider citing our paper. 
 ```
 @article{suzgun2022hupd,
-  title={The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications},
-  author={Suzgun, Mirac and Melas-Kyriazi, Luke and Sarkar, Suproteem K and Kominers, Scott and Shieber, Stuart},
-  year={2022}
+    title={The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications},
+    author={Suzgun, Mirac and Melas-Kyriazi, Luke and Sarkar, Suproteem K. and Kominers, Scott Duke and Shieber, Stuart M.},
+    year={2022},
+    publisher={arXiv preprint arXiv:2207.04043},
+    url={https://arxiv.org/abs/2207.04043},
 }
 ```
 
 ## Licensing and Contact
-- The Harvard USPTO Dataset (HUPD) is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License, while the codes and the pretrained models in this repository are under the MIT License. 
-- Contact msuzgun@cs.stanford.edu with any questions, comments, or suggestions.
+- The Harvard USPTO Dataset (HUPD) is released under the CreativeCommons Attribution-NonCommercial-ShareAlike 4.0 International, while the codes and the pretrained models in this repository are released under the MIT License. 
+- Contact msuzgun@stanford.edu with any questions, comments, or suggestions.
