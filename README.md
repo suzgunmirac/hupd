@@ -1,7 +1,9 @@
 ![HUPD-Diagram](https://github.com/suzgunmirac/hupd/blob/main/legacy/figures/HUPD-Logo.png)
 
-# The Harvard USPTO Patent Dataset (HUPD)
-This present repository contains the dataset from "[_The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications_](https://arxiv.org/abs/2207.04043)", which is currently under review in the NeurIPS 2022 Datasets and Benchmarks Track.
+# The Harvard USPTO Patent Dataset (HUPD) [![arXiv](https://img.shields.io/badge/arXiv-2207.04043-b31b1b.svg)](https://arxiv.org/abs/2207.04043)
+This present repository contains the dataset from "[The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications](https://arxiv.org/abs/2207.04043)", which has recently been accepted to the NeurIPS 2023 Datasets and Benchmarks Track.
+
+**N.B.** We will be updating our GitHub repository and website shortly.
 
 ## Table of Contents
 1. [Overview of HUPD](#overview-of-hupd)
@@ -184,15 +186,15 @@ The model weights can also be downloaded from [this Google Drive link](https://d
 ## Citation
 If your research makes use of our dataset, models, or results, please consider citing our paper. 
 ```
-@article{suzgun2022hupd,
-    title={The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications},
-    author={Suzgun, Mirac and Melas-Kyriazi, Luke and Sarkar, Suproteem K. and Kominers, Scott Duke and Shieber, Stuart M.},
-    year={2022},
-    publisher={arXiv preprint arXiv:2207.04043},
-    url={https://arxiv.org/abs/2207.04043},
+@inproceedings{
+suzgun2023the,
+    title={The Harvard {USPTO} Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications},
+    author={Mirac Suzgun and Luke Melas-Kyriazi and Suproteem K Sarkar and Scott Kominers and Stuart Shieber},
+    booktitle={Thirty-seventh Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+    year={2023},
+    url={https://openreview.net/forum?id=tk27oD2cBw}
 }
 ```
 
 ## Licensing and Contact
-- The Harvard USPTO Dataset (HUPD) is released under the CreativeCommons Attribution-NonCommercial-ShareAlike 4.0 International, while the codes and the pretrained models in this repository are released under the MIT License. 
-- Contact msuzgun@stanford.edu with any questions, comments, or suggestions.
+HUPD is released under the Creative Commons Attribution 4.0 International License. If you have any questions, comments, or suggestions, please feel free to reach out to msuzgun@stanford.edu.
